@@ -4,7 +4,7 @@ local M = {}
 
 -- default format for each supported language
 M.opts = {
-  c = "doxygen",
+  c = "doxygen", -- "doxygen" or "kernel_doc"
 }
 
 M.docs_gen = function(args)
@@ -31,7 +31,7 @@ M.setup = function(opts)
   end, {
     nargs = "*",
     complete = function(_, line)
-      local cmds = { "doxygen" }
+      local cmds = { "doxygen", "kernel_doc" }
       local l = vim.split(line, "%s+")
       local n = #l - 2
 

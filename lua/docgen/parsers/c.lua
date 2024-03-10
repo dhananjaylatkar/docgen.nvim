@@ -74,6 +74,17 @@ M.get_doc = function(opts)
     utils.add_line(res.comment, tab_space, string.format(" * @return"))
     utils.add_line(res.comment, tab_space, " */")
     utils.add_line(res.comment, tab_space, "")
+  elseif doc_format == "kernel_doc" then
+    utils.add_line(res.comment, tab_space, "/**")
+    utils.add_line(res.comment, tab_space, string.format(" * %s() -", method_info.name))
+    for _, param in ipairs(method_info.param_info) do
+      utils.add_line(res.comment, tab_space, string.format(" * @%s:", param.name))
+    end
+    utils.add_line(res.comment, tab_space, " *")
+    utils.add_line(res.comment, tab_space, " * Context:")
+    utils.add_line(res.comment, tab_space, " * Return:")
+    utils.add_line(res.comment, tab_space, " */")
+    utils.add_line(res.comment, tab_space, "")
   else
     vim.notify("DocGen: doc_format=" .. doc_format .. " is not implemented for 'c'")
   end

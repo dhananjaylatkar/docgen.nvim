@@ -40,7 +40,7 @@ _docgen.nvim_ comes with following defaults:
 ```lua
 -- default doc format for each supported language
 {
-  c = "doxygen",
+  c = "doxygen", -- "doxygen" or "kernel_doc"
 }
 ```
 
