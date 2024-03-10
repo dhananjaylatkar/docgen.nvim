@@ -2,11 +2,14 @@
 
 Generate function docs using treesitter
 
+[docgen.nvim.webm](https://github.com/dhananjaylatkar/docgen.nvim/assets/27724944/e560572e-7539-4b26-b8e2-2d899cbde877)
+
 ## Installation
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
+
 {
 
   "dhananjaylatkar/docgen.nvim",
