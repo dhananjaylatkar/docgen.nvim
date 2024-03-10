@@ -11,10 +11,18 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
 
 {
-
   "dhananjaylatkar/docgen.nvim",
   dependencies = {
+    {
+    -- make sure parser for your language is installed
       "nvim-treesitter/nvim-treesitter",
+      config = function()
+        require("nvim-treesitter.configs").setup({
+          ensure_installed = { "c" },
+        })
+      end,
+      run = ":TSUpdate",
+    }
   },
   opts = {
     -- USE EMPTY FOR DEFAULT OPTIONS
