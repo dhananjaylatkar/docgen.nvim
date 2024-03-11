@@ -12,18 +12,18 @@ local function get_func_info()
   local query = vim.treesitter.query.parse(
     "c",
     [[
-        (function_definition
-          declarator: (function_declarator
-            declarator: (identifier) @func.name
-            parameters: (parameter_list
-              (parameter_declaration
-                declarator:
-                (identifier)
-              )
-            )@func.params
-          )
-        ) @func
-        ]]
+      (function_definition
+        declarator: (function_declarator
+          declarator: (identifier) @func.name
+          parameters: (parameter_list
+            (parameter_declaration
+              declarator:
+              (_)
+            )
+          )@func.params
+        )
+      ) @func
+    ]]
   )
 
   for _, match in query:iter_matches(method_node, 0) do
