@@ -62,7 +62,8 @@ You can add support for your language or format easily.
 
 ```lua
 {
-  start_line = "<start pos of doc>",
+  start_pos = "<start pos of doc>",
+  ins_pos = "<pos of cursor after inserting>",
   comment = "<list of doc comments>"
 }
 ```

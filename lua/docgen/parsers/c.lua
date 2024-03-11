@@ -42,7 +42,7 @@ local function get_func_info()
     return {
       name = fun_name,
       param_info = param_info,
-      start_line = method_node:start(),
+      start_pos = method_node:start(),
     }
   end
 end
@@ -54,15 +54,15 @@ M.get_doc = function(opts)
   local method_info = get_func_info()
 
   if not method_info then
-    return res
+    return nil
   end
 
-  local tab_space = utils.get_indent_padding(method_info.start_line)
-  res.start_line = method_info.start_line
+  local tab_space = utils.get_indent_padding(method_info.start_pos)
+  res.start_pos = method_info.start_pos
 
   if doc_format == "doxygen" then
     utils.add_line(res.comment, tab_space, "/**")
-    utils.add_line(res.comment, tab_space, string.format(" * @brief"))
+    utils.add_line(res.comment, tab_space, string.format(" * @brief "))
 
     utils.add_line(res.comment, tab_space, " *")
 
@@ -76,7 +76,7 @@ M.get_doc = function(opts)
     utils.add_line(res.comment, tab_space, "")
   elseif doc_format == "kernel_doc" then
     utils.add_line(res.comment, tab_space, "/**")
-    utils.add_line(res.comment, tab_space, string.format(" * %s() -", method_info.name))
+    utils.add_line(res.comment, tab_space, string.format(" * %s() - ", method_info.name))
     for _, param in ipairs(method_info.param_info) do
       utils.add_line(res.comment, tab_space, string.format(" * @%s:", param.name))
     end
@@ -87,8 +87,10 @@ M.get_doc = function(opts)
     utils.add_line(res.comment, tab_space, "")
   else
     vim.notify("DocGen: doc_format=" .. doc_format .. " is not implemented for 'c'")
+    return nil
   end
 
+  res.ins_pos = res.start_pos + 2
   return res
 end
 

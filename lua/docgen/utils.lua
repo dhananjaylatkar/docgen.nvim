@@ -50,7 +50,9 @@ M.insert_doc = function(get_doc, opts)
     return
   end
 
-  vim.api.nvim_buf_set_text(0, doc.start_line, 0, doc.start_line, 0, doc.comment)
+  vim.api.nvim_buf_set_text(0, doc.start_pos, 0, doc.start_pos, 0, doc.comment)
+  vim.api.nvim_win_set_cursor(0, {doc.ins_pos, 0})
+  vim.cmd([[ startinsert! ]])
 end
 
 return M

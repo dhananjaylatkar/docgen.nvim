@@ -2,7 +2,7 @@ local utils = require("docgen.utils")
 
 local M = {}
 
--- default format for each supported language
+-- default doc format for each supported language
 M.opts = {
   c = "doxygen", -- "doxygen" or "kernel_doc"
 }
